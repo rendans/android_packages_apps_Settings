@@ -4411,4 +4411,8 @@
 
 	 <!-- Theme chooser -->
     <string name="themes_title">Themes</string>
+
+    <!-- Hostname setting -->
+    <string name="device_hostname">Device hostname</string>
+
 </resources>

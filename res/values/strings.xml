@@ -3954,7 +3954,6 @@ found in the list of installed apps.</string>
     <string name="icon_picker_gallery_title">Gallery</string>
     <string name="icon_picker_pack_title">Icon pack</string>
     
-<<<<<<< HEAD
     <!-- Lockscreen Targets -->
     <!-- Lock Screen Shortcuts -->
     <string name="profile_applist_title">Applications</string>

@@ -58,8 +58,7 @@
             android:title="@string/notification_pulse_title"
             android:persistent="false" />
 
- <PreferenceCategory android:title="@string/xenonhd_extras_title"
-            android:persistent="false">
+ <PreferenceCategory android:title="@string/xenonhd_extras_title"/>
 
  <!-- Volume rocker wake -->
         <CheckBoxPreference

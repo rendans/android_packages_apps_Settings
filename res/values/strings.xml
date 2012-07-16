@@ -4126,4 +4126,8 @@
 <!-- XenonHD Extras -->
     <string name="xenonhd_extras_title">Extras</string>
 
+<!-- Rom Control -->
+    <string name="quick_links_title">Quick Links</string>
+    <string name="rom_control_title">ROM Control</string>
+
 </resources>

@@ -4123,6 +4123,6 @@
 
 <!-- Rom Control -->
     <string name="quick_links_title">Quick Links</string>
-    <string name="rom_control_title">ROM Control</string>
+    <string name="rom_control_title">ROM Settings</string>
 
 </resources>

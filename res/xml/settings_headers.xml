@@ -68,8 +68,6 @@
                 android:targetPackage="com.aokp.romcontrol" />
     </header>
 
-=======
->>>>>>> parent of 63ddbb0... Add CyanogenMod category + Trebuchet settings
     <!-- DEVICE -->
     <header android:title="@string/header_category_device" />
 

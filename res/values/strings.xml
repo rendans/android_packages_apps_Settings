@@ -4114,6 +4114,10 @@
     <string name="pref_volume_wake_title">Volume rocker wake</string>
     <string name="pref_volume_wake_summary">Pressing the volume up/down wakes the Nexus</string>
 
+    <!-- Safe headset volume restore checkbox -->
+    <string name="safe_headset_restore_title">Safe headset volume</string>
+    <string name="safe_headset_restore_summary">Prevent loud volume levels when headset is first plugged in</string>
+
     <!-- Wifi sleep timeout -->
     <string name="wifi_idle_mn_title">Wi-Fi idle timeout</string>
     <string name="wifi_idle_5mn">5 minutes</string>

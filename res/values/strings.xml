@@ -3362,6 +3362,11 @@
     <!-- Sound settings screen, setting option summary text -->
     <string name="emergency_tone_summary">Set behavior when an emergency call is placed</string>
 
+    <!-- Sound settings screen, setting check box label -->
+    <string name="volume_adjust_sounds_enable_title">Volume adjust sound</string>
+    <!-- Sound settings screen, setting check box summary -->
+    <string name="volume_adjust_sounds_enable_summary">Play sound when adjusting volume with hard keys</string>
+
     <!-- Backup and reset Settings screen --><skip />
     <!-- Backup and reset settings menu title -->
     <string name="privacy_settings">Backup &amp; reset</string>

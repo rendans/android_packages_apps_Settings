@@ -4439,4 +4439,6 @@
 	<!-- Rom Settings -->
     <string name="rom_control_title">ROM Settings</string>
 
+    <string name="vibration_title">Phone vibration</string>
+
 </resources>

@@ -904,7 +904,6 @@
     <string name="location_neighborhood_level" msgid="5626515380188353712">"Apps können Ihren Standort mit dem Google-Standortdienst schneller bestimmen. Anonyme Standortdaten werden erfasst und an Google gesendet."</string>
     <string name="location_neighborhood_level_wifi" msgid="7457348712272184793">"Standort per WLAN bestimmt"</string>
     <string name="location_gps" msgid="8392461023569708478">"GPS-Satelliten"</string>
-    <string name="location_street_level" msgid="4244496898967415234">"Apps dürfen meinen Standort mithilfe von GPS bestimmen."</string>
     <string name="location_street_level" product="tablet" msgid="1669562198260860802">"Apps dürfen Ihren Standort mithilfe von GPS auf Ihrem Tablet bestimmen."</string>
     <string name="location_street_level" product="default" msgid="4617445745492014203">"Apps dürfen Ihren Standort mithilfe von GPS auf Ihrem Telefon bestimmen."</string>
     <string name="assisted_gps" msgid="4649317129586736885">"Unterstütztes GPS verwenden"</string>

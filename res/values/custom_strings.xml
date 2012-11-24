@@ -46,4 +46,9 @@
 
     <!-- Launcher settings  -->
     <string name="launcher_settings_title">Launcher</string>
+ 
+    <!-- Theme chooser -->
+    <string name="themes_title">Themes</string>
+
+    <string name="xenonhd_extras_title">Extras</string>
 </resources>

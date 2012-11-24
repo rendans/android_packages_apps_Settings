@@ -63,4 +63,13 @@
                 android:title="@string/wifi_display_settings_title"
                 android:fragment="com.android.settings.wfd.WifiDisplaySettings" />
 
+		<PreferenceCategory android:title="@string/xenonhd_extras_title" />
+
+		<!-- Volume rocker wake -->
+        <CheckBoxPreference
+             android:key="pref_volume_wake"
+             android:title="@string/pref_volume_wake_title"
+             android:summary="@string/pref_volume_wake_summary"
+             android:defaultValue="false" />
+
 </PreferenceScreen>

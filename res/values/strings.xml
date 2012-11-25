@@ -4401,6 +4401,8 @@
 
 	<string name="xenonhd_extras_title">Extras</string>
 
+	<string name="quick_links_title">Quick Links</string>
+
 	<!-- Volume rocker wake -->
     <string name="pref_volume_wake_title">Volume rocker wake</string>
     <string name="pref_volume_wake_summary">Pressing the volume up/down wakes the device.</string>

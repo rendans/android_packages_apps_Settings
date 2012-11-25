@@ -4658,6 +4658,9 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="camera_sounds_title">Camera shutter sound</string>
     <string name="camera_sounds_summary">WARNING: Disabling the camera shutter sound is illegal in some areas!</string>
     
+    <!-- Advanced, Device specific (DeviceParts) settings  -->
+    <string name="advanced_settings_title">Advanced</string>
+    
     <!-- TRDS Settings -->
     <string name="trds_settings_title">Dark XenonHD</string>
     

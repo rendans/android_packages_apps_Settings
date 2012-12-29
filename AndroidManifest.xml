@@ -1487,6 +1487,8 @@
             </intent-filter>
         </receiver>
 
+		<activity android:name=".th.LockscreenTargets" />
+
         <!-- Watch for ContactsContract.Profile changes and update the user's photo.  -->
         <receiver android:name=".users.ProfileUpdateReceiver">
             <intent-filter>

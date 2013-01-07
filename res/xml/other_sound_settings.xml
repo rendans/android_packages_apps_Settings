@@ -74,6 +74,13 @@
             android:dialogTitle="@string/vibrator_intensity_title"
             android:persistent="false" />
 
+    <!-- Headset -->
+        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+            android:key="headset_connect_player"
+            android:title="@string/headset_connect_player_title"
+            android:summary="@string/headset_connect_player_summary"
+            android:defaultValue="false" />
+
     <!-- Dock speaker plays -->
     <com.android.settings.notification.DropDownPreference
             android:key="dock_audio_media"

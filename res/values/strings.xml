@@ -4593,7 +4593,10 @@
     <string name="saved">mV saved</string>
     <string name="sob">Set on boot</string>
 
-	<string name="camera_sounds">Camera sounds</string> ** TODO ** -->
 	<string name="safe_headset_volume_title">Safe headset volume</string>
+
+	<!--- Chronus -->
+	<string name="lock_clock_title">Clock widget</string>
+	<string name="lock_clock_summary">View or change how the \'Chronus\' Home and Lock screen widgets will display</string>
 
 </resources>

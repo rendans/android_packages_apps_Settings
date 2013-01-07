@@ -26,6 +26,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.ContentObserver;
@@ -50,6 +51,9 @@ import com.android.settings.DreamSettings;
 
 import java.util.ArrayList;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class DisplaySettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener, OnPreferenceClickListener {
     private static final String TAG = "DisplaySettings";
@@ -65,6 +69,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_WIFI_DISPLAY = "wifi_display";
 	private static final String KEY_VOLUME_WAKE = "pref_volume_wake";
 	private static final String KEY_VOLBTN_MUSIC_CTRL = "volbtn_music_controls";
+	private static final String KEY_LOCK_CLOCK = "lock_clock";
 
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
 
@@ -152,6 +157,9 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                 == WifiDisplayStatus.FEATURE_STATE_UNAVAILABLE) {
             getPreferenceScreen().removePreference(mWifiDisplayPreference);
             mWifiDisplayPreference = null;
+
+		// Dont display the lock clock preference if its not installed
+        removePreferenceIfPackageNotInstalled(findPreference(KEY_LOCK_CLOCK));
 
 		mVolumeWake = (CheckBoxPreference) findPreference(KEY_VOLUME_WAKE);
             if (mVolumeWake != null) {
@@ -392,6 +400,24 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             }
         }
     };
+
+	private boolean removePreferenceIfPackageNotInstalled(Preference preference) {
+        String intentUri = ((PreferenceScreen) preference).getIntent().toUri(1);
+        Pattern pattern = Pattern.compile("component=([^/]+)/");
+        Matcher matcher = pattern.matcher(intentUri);
+
+        String packageName = matcher.find() ? matcher.group(1) : null;
+        if (packageName != null) {
+            try {
+                getPackageManager().getPackageInfo(packageName, 0);
+            } catch (NameNotFoundException e) {
+                Log.e(TAG, "package " + packageName + " not installed, hiding preference.");
+                getPreferenceScreen().removePreference(preference);
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     public boolean onPreferenceClick(Preference preference) {

@@ -31,6 +31,11 @@
             android:fragment="com.android.settings.QuietHours"
             android:title="@string/quiet_hours_title" />
 
+	<CheckBoxPreference
+			android:key="safe_headset_volume"
+			android:title="@string/safe_headset_volume_title"
+			android:defaultValue="true" />
+
     <Preference
             android:key="musicfx"
             android:title="@string/musicfx_title">

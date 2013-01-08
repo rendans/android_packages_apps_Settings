@@ -70,6 +70,12 @@
                 android:targetPackage="com.aokp.romcontrol" />
     </header>
 
+	<!-- Launcher -->
+    <header
+        android:id="@+id/launcher_settings"
+        android:title="@string/launcher_settings_title"
+        android:icon="@drawable/ic_settings_launcher" />
+
 	<!-- Theme chooser -->
     <header android:icon="@drawable/ic_settings_themes"
             android:title="@string/themes_title">

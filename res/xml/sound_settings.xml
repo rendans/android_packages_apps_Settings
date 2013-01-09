@@ -73,6 +73,14 @@
             android:dialogTitle="@string/increasing_ring_title"
             android:persistent="false"
             android:streamType="ring" />
+
+	<PreferenceCategory
+            android:title="@string/headset_category_title"/>
+
+    <CheckBoxPreference
+            android:key="headset_connect_player"
+            android:title="@string/headset_connect_player_title"
+            android:persistent="false" />
     
     <PreferenceCategory
             android:title="@string/sound_category_system_title"/>

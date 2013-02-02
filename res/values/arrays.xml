@@ -892,6 +892,7 @@
         <item>0</item>
         <item>1</item>
         <item>2</item>
+    </string-array>
 
     <!--- Sms security limit -->
     <string-array name="sms_security_check_limit_entries" translatable="false">

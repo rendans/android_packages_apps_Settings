@@ -383,8 +383,6 @@ public class ChooseLockGeneric extends PreferenceActivity {
                     startActivity(intent);
                 }
             } else if (quality == DevicePolicyManager.PASSWORD_QUALITY_SOMETHING) {
-                boolean showTutorial = !mChooseLockSettingsHelper.utils().isPatternEverChosen();
-                Intent intent = new Intent();
                 intent.setClass(getActivity(), ChooseLockPatternSize.class);
                 intent.putExtra("key_lock_method", "pattern");
                 intent.putExtra(CONFIRM_CREDENTIALS, false);

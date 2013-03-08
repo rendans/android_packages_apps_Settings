@@ -4593,5 +4593,8 @@
     
     <string name="swap_volume_keys_title">Swap volume buttons</string>
     <string name="swap_volume_keys_summary">Swap volume buttons when the screen is rotated by 90 or 180 degrees</string>
+    
+    <string name="lockscreen_quick_unlock_control_title">Quick pin unlock</string>
+    <string name="lockscreen_quick_unlock_control_summary">Unlock password/pin lockscreen without pressing enter button</string>
 
 </resources>

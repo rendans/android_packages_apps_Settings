@@ -82,6 +82,7 @@ public class SecuritySettings extends SettingsPreferenceFragment
     private static final String KEY_CREDENTIALS_MANAGER = "credentials_management";
     private static final String PACKAGE_MIME_TYPE = "application/vnd.android.package-archive";
     private static final String KEY_SMS_SECURITY_CHECK_PREF = "sms_security_check_limit";
+    private static final String KEY_QUICK_UNLOCK = "lockscreen_quick_unlock_control";
 
     DevicePolicyManager mDPM;
 
@@ -103,6 +104,7 @@ public class SecuritySettings extends SettingsPreferenceFragment
     private DialogInterface mWarnInstallApps;
     private CheckBoxPreference mToggleVerifyApps;
     private CheckBoxPreference mPowerButtonInstantlyLocks;
+    private CheckBoxPreference mQuickUnlock;
 
     private boolean mIsPrimary;
 
@@ -202,10 +204,21 @@ public class SecuritySettings extends SettingsPreferenceFragment
 
         // visible pattern
         mVisiblePattern = (CheckBoxPreference) root.findPreference(KEY_VISIBLE_PATTERN);
+        
+        // Quick Unlock for PIN and Password Lockscreens
+        mQuickUnlock = (CheckBoxPreference) root.findPreference(KEY_QUICK_UNLOCK);
 
         // lock instantly on power key press
         mPowerButtonInstantlyLocks = (CheckBoxPreference) root.findPreference(
                 KEY_POWER_INSTANTLY_LOCKS);
+                
+        // if we aren't using a pin or password remove quick unlock
+        if (!usingPinOrPassword(resid)) {
+            PreferenceGroup securityCategory = (PreferenceGroup) root.findPreference(KEY_SECURITY_CATEGORY);
+            if (securityCategory != null && mQuickUnlock != null) {
+                securityCategory.removePreference(root.findPreference(KEY_QUICK_UNLOCK));
+            }
+        }
                 
         // visible error pattern
         mVisibleErrorPattern = (CheckBoxPreference) root.findPreference(KEY_VISIBLE_ERROR_PATTERN);
@@ -287,6 +300,14 @@ public class SecuritySettings extends SettingsPreferenceFragment
          }
 
         return root;
+    }
+
+	// Why? cuz I hate negative logic.
+    private boolean usingPinOrPassword(int resid) {
+        if (resid == R.xml.security_settings_pattern || resid == R.xml.security_settings_pin) {
+            return true;
+        }
+        return false;
     }
 
     private boolean isNonMarketAppsAllowed() {
@@ -430,6 +451,10 @@ public class SecuritySettings extends SettingsPreferenceFragment
         if (mVisiblePattern != null) {
             mVisiblePattern.setChecked(lockPatternUtils.isVisiblePatternEnabled());
         }
+        if (mQuickUnlock != null) {
+            mQuickUnlock.setChecked(Settings.System.getBoolean(getContentResolver(),
+                    Settings.System.LOCKSCREEN_QUICK_UNLOCK_CONTROL, false));
+        }
         if (mVisibleErrorPattern != null) {
             mVisibleErrorPattern.setChecked(lockPatternUtils.isShowErrorPath());
         }
@@ -500,6 +525,9 @@ public class SecuritySettings extends SettingsPreferenceFragment
             lockPatternUtils.setVisibleDotsEnabled(isToggled(preference));
         } else if (KEY_POWER_INSTANTLY_LOCKS.equals(key)) {
             lockPatternUtils.setPowerButtonInstantlyLocks(isToggled(preference));
+        } else if (KEY_QUICK_UNLOCK.equals(key)) {
+            Settings.System.putBoolean(getContentResolver(),
+                 Settings.System.LOCKSCREEN_QUICK_UNLOCK_CONTROL, isToggled(preference));
         } else if (preference == mShowPassword) {
             Settings.System.putInt(getContentResolver(), Settings.System.TEXT_SHOW_PASSWORD,
                     mShowPassword.isChecked() ? 1 : 0);

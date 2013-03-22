@@ -89,6 +89,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
 	private static final String KEY_SAFE_HEADSET_VOLUME = "safe_headset_volume";
 	private static final String KEY_HEADSET_CONNECT_PLAYER = "headset_connect_player";
 	private static final String KEY_CONVERT_SOUND_TO_VIBRATE = "notification_convert_sound_to_vibration";
+	private static final String KEY_SWAP_VOLUME_BUTTONS = "swap_volume_buttons";
 
     private static final String[] NEED_VOICE_CAPABILITY = {
             KEY_RINGTONE, KEY_DTMF_TONE, KEY_CATEGORY_CALLS,
@@ -114,6 +115,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
 	private CheckBoxPreference mSafeHeadsetVolume;
 	private CheckBoxPreference mHeadsetConnectPlayer;
 	private CheckBoxPreference mConvertSoundToVibration;
+	private CheckBoxPreference mSwapVolumeButtons;
 
     private Runnable mRingtoneLookupRunnable;
 
@@ -198,6 +200,9 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         mHapticFeedback.setPersistent(false);
         mHapticFeedback.setChecked(Settings.System.getInt(resolver,
                 Settings.System.HAPTIC_FEEDBACK_ENABLED, 1) != 0);
+        mSwapVolumeButtons = (CheckBoxPreference) findPreference(KEY_SWAP_VOLUME_BUTTONS);
+        mSwapVolumeButtons.setChecked(Settings.System.getInt(resolver,
+                Settings.System.SWAP_VOLUME_KEYS, 0) == 1);
         mVolumeAdjustSounds = (CheckBoxPreference) findPreference(KEY_VOLUME_ADJUST_SOUNDS);
         mVolumeAdjustSounds.setPersistent(false);
         mVolumeAdjustSounds.setChecked(Settings.System.getInt(resolver,
@@ -399,6 +404,10 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         } else if (preference == mConvertSoundToVibration) {
             Settings.System.putInt(getContentResolver(), Settings.System.NOTIFICATION_CONVERT_SOUND_TO_VIBRATION,
                     mConvertSoundToVibration.isChecked() ? 1 : 0);
+                    
+        } else if (preference == mSwapVolumeButtons) {
+            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SWAP_VOLUME_KEYS,
+                    mSwapVolumeButtons.isChecked() ? 1 : 0);
 
 		} else if (preference == mSafeHeadsetVolume) {
             Settings.System.putBoolean(getContentResolver(), Settings.System.MANUAL_SAFE_MEDIA_VOLUME,

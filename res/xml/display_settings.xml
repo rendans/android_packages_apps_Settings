@@ -60,13 +60,6 @@
 
 				<PreferenceCategory android:title="@string/xenonhd_extras_title" />
 
-		<!-- Volume rocker wake -->
-        <CheckBoxPreference
-             android:key="pref_volume_wake"
-             android:title="@string/pref_volume_wake_title"
-             android:summary="@string/pref_volume_wake_summary"
-             android:defaultValue="false" />
-
 		<CheckBoxPreference
             android:key="volbtn_music_controls"
             android:title="@string/volbtn_music_controls_title"

@@ -67,7 +67,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
     private static final String KEY_SCREEN_SAVER = "screensaver";
     private static final String KEY_WIFI_DISPLAY = "wifi_display";
-	private static final String KEY_VOLUME_WAKE = "pref_volume_wake";
 	private static final String KEY_VOLBTN_MUSIC_CTRL = "volbtn_music_controls";
 	private static final String KEY_LOCK_CLOCK = "lock_clock";
 
@@ -161,11 +160,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 		// Dont display the lock clock preference if its not installed
         removePreferenceIfPackageNotInstalled(findPreference(KEY_LOCK_CLOCK));
 
-		mVolumeWake = (CheckBoxPreference) findPreference(KEY_VOLUME_WAKE);
-            if (mVolumeWake != null) {
-                mVolumeWake.setChecked(Settings.System.getInt(resolver,
-                    Settings.System.VOLUME_WAKE_SCREEN, 0) == 1);
-                }
             }
         }
 
@@ -363,11 +357,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 		} else if (preference == mVolBtnMusicCtrl) {
                 Settings.System.putInt(getContentResolver(), Settings.System.VOLBTN_MUSIC_CONTROLS,
                         mVolBtnMusicCtrl.isChecked() ? 1 : 0);
-
-		} else if (preference == mVolumeWake) {
-            Settings.System.putInt(getContentResolver(), Settings.System.VOLUME_WAKE_SCREEN,
-                    mVolumeWake.isChecked() ? 1 : 0);
-            return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }

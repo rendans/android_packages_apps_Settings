@@ -44,12 +44,6 @@
             android:title="@string/owner_info_settings_title"
             android:summary="@string/owner_info_settings_summary"/>
 
-		<Preference
-		android:fragment="com.android.settings.th.LockscreenTargets"
-        android:key="lockscreen_targets"
-		android:summary="@string/lockscreen_target_summary"
-		android:title="@string/lockscreen_target_title" />
-
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -67,7 +67,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
     private static final String KEY_SCREEN_SAVER = "screensaver";
     private static final String KEY_WIFI_DISPLAY = "wifi_display";
-	private static final String KEY_VOLBTN_MUSIC_CTRL = "volbtn_music_controls";
 	private static final String KEY_LOCK_CLOCK = "lock_clock";
 
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
@@ -77,8 +76,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private CheckBoxPreference mAccelerometer;
     private WarnedListPreference mFontSizePref;
     private CheckBoxPreference mNotificationPulse;
-	private CheckBoxPreference mVolumeWake;
-	private CheckBoxPreference mVolBtnMusicCtrl;
 
     private final Configuration mCurConfig = new Configuration();
     
@@ -117,10 +114,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                         com.android.internal.R.bool.config_dreamsSupported) == false) {
             getPreferenceScreen().removePreference(mScreenSaverPreference);
         }
-        
-		mVolBtnMusicCtrl = (CheckBoxPreference) findPreference(KEY_VOLBTN_MUSIC_CTRL);
-        mVolBtnMusicCtrl.setChecked(Settings.System.getInt(resolver,
-                Settings.System.VOLBTN_MUSIC_CONTROLS, 1) != 0);
 
         mScreenTimeoutPreference = (ListPreference) findPreference(KEY_SCREEN_TIMEOUT);
         final long currentTimeout = Settings.System.getLong(resolver, SCREEN_OFF_TIMEOUT,
@@ -353,10 +346,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             boolean value = mNotificationPulse.isChecked();
             Settings.System.putInt(getContentResolver(), Settings.System.NOTIFICATION_LIGHT_PULSE,
                     value ? 1 : 0);
-
-		} else if (preference == mVolBtnMusicCtrl) {
-                Settings.System.putInt(getContentResolver(), Settings.System.VOLBTN_MUSIC_CONTROLS,
-                        mVolBtnMusicCtrl.isChecked() ? 1 : 0);
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }

@@ -41,6 +41,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemProperties;
 import android.os.Vibrator;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
@@ -91,6 +92,8 @@ public class SoundSettings extends SettingsPreferenceFragment implements
 	private static final String KEY_CONVERT_SOUND_TO_VIBRATE = "notification_convert_sound_to_vibration";
 	private static final String KEY_SWAP_VOLUME_BUTTONS = "swap_volume_buttons";
 	private static final String KEY_VOLBTN_MUSIC_CTRL = "volbtn_music_controls";
+	private static final String KEY_CAMERA_SOUNDS = "camera_sounds";
+	private static final String PROP_CAMERA_SOUND = "persist.sys.camera-sound";
 
     private static final String[] NEED_VOICE_CAPABILITY = {
             KEY_RINGTONE, KEY_DTMF_TONE, KEY_CATEGORY_CALLS,
@@ -118,6 +121,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
 	private CheckBoxPreference mConvertSoundToVibration;
 	private CheckBoxPreference mSwapVolumeButtons;
 	private CheckBoxPreference mVolBtnMusicCtrl;
+	private CheckBoxPreference mCameraSounds;
 
     private Runnable mRingtoneLookupRunnable;
 
@@ -213,7 +217,10 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         mLockSounds.setPersistent(false);
         mLockSounds.setChecked(Settings.System.getInt(resolver,
                 Settings.System.LOCKSCREEN_SOUNDS_ENABLED, 1) != 0);
-                
+		mCameraSounds = (CheckBoxPreference) findPreference(KEY_CAMERA_SOUNDS);
+        mCameraSounds.setPersistent(false);
+        mCameraSounds.setChecked(SystemProperties.getBoolean(
+                PROP_CAMERA_SOUND, true));
         mVolBtnMusicCtrl = (CheckBoxPreference) findPreference(KEY_VOLBTN_MUSIC_CTRL);
         mVolBtnMusicCtrl.setChecked(Settings.System.getInt(resolver,
                 Settings.System.VOLBTN_MUSIC_CONTROLS, 1) != 0);
@@ -426,6 +433,9 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         } else if (preference == mVolBtnMusicCtrl) {
                 Settings.System.putInt(getContentResolver(), Settings.System.VOLBTN_MUSIC_CONTROLS,
                         mVolBtnMusicCtrl.isChecked() ? 1 : 0);
+                        
+        } else if (preference == mCameraSounds) {
+            SystemProperties.set(PROP_CAMERA_SOUND, mCameraSounds.isChecked() ? "1" : "0");
 
         } else if (preference == mMusicFx) {
             // let the framework fire off the intent

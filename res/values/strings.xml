@@ -4618,4 +4618,7 @@
     <string name="auto_brightness_menu_split">Split</string>
     <string name="auto_brightness_menu_remove">Remove</string>
     <string name="ok">OK</string>
+    
+    <string name="camera_sounds_title">Camera shutter sound</string>
+    <string name="camera_sounds_summary">WARNING: Disabling the camera shutter sound is illegal in some areas!</string>
 </resources>

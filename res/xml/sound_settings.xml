@@ -108,6 +108,18 @@
             android:key="lock_sounds"
             android:title="@string/lock_sounds_enable_title"
             android:defaultValue="true" />
+            
+    <CheckBoxPreference
+            android:key="volume_adjust_sounds"
+            android:title="@string/volume_adjust_sounds_enable_title"
+            android:summary="@string/volume_adjust_sounds_enable_summary"
+            android:persistent="true" />
+            
+   	<CheckBoxPreference
+            android:key="camera_sounds"
+            android:title="@string/camera_sounds_title"
+            android:summary="@string/camera_sounds_summary"
+            android:defaultValue="true" />
 
     <CheckBoxPreference
             android:key="haptic_feedback"
@@ -124,12 +136,6 @@
             android:key="swap_volume_buttons"
             android:title="@string/swap_volume_keys_title"
             android:summary="@string/swap_volume_keys_summary" />
-
-    <CheckBoxPreference
-            android:key="volume_adjust_sounds"
-            android:title="@string/volume_adjust_sounds_enable_title"
-            android:summary="@string/volume_adjust_sounds_enable_summary"
-            android:persistent="true" />
 
     <ListPreference
             android:key="emergency_tone"

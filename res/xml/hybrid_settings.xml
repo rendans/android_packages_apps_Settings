@@ -46,6 +46,12 @@
             android:title="@string/navbar_height_title"
             android:summary="@string/navbar_height_summary" />
 
+        <PreferenceScreen
+            android:key="widgets"
+            android:fragment="com.android.settings.beerbong.Widgets"
+            android:title="@string/widgets_title"
+            android:summary="@string/widgets_summary" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

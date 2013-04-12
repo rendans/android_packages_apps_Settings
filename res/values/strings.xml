@@ -4621,4 +4621,7 @@
     
     <string name="camera_sounds_title">Camera shutter sound</string>
     <string name="camera_sounds_summary">WARNING: Disabling the camera shutter sound is illegal in some areas!</string>
+    
+    <!-- TRDS Settings -->
+    <string name="trds_settings_title">Dark XenonHD</string>
 </resources>

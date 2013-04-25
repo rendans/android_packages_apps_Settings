@@ -4624,4 +4624,7 @@
     
     <!-- TRDS Settings -->
     <string name="trds_settings_title">Dark XenonHD</string>
+    
+    <!-- Permissions Management -->
+    <string name="permissions_settings_title">Permissions Management</string>
 </resources>

@@ -4880,6 +4880,14 @@
     <!-- Cell Broadcast settings title [CHAR LIMIT=50] -->
     <string name="cell_broadcast_settings">Cell broadcasts</string>
 
+    <string name="trigger_category">Trigger region</string>
+    <string name="trigger_width_title">Trigger width</string>
+    <string name="trigger_width_summary">Adjust the width of the trigger area</string>
+    <string name="trigger_top_title">Trigger position</string>
+    <string name="trigger_top_summary">Adjust the vertical postion of the trigger area</string>
+    <string name="trigger_bottom_title">Trigger height</string>
+    <string name="trigger_bottom_summary">Adjust the height of the trigger area</string>
+
     <string name="ad_settings_title">Active display</string>
     <string name="ad_settings_summary">Change active display settings</string>
     <string name="ad_enable_title">Enable</string>

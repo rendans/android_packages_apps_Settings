@@ -431,6 +431,9 @@ public class Settings extends PreferenceActivity
             int id = (int) header.id;
             if (id == R.id.operator_settings || id == R.id.manufacturer_settings) {
                 Utils.updateHeaderToSpecificActivityFromMetaDataOrRemove(this, target, header);
+            } else if (id == R.id.advanced_settings) {
+                if (!needsAdvancedSettings())
+                    target.remove(header);
 			} else if (id == R.id.launcher_settings) {
                 Intent launcherIntent = new Intent(Intent.ACTION_MAIN);
                 launcherIntent.addCategory(Intent.CATEGORY_HOME);
@@ -562,6 +565,10 @@ public class Settings extends PreferenceActivity
             mListeningToAccountUpdates = true;
         }
         return headerIndex;
+    }
+            
+    private boolean needsAdvancedSettings() {
+        return getResources().getBoolean(R.bool.has_advanced_settings);
     }
 
     private void getMetaData() {

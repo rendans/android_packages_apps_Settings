@@ -4679,7 +4679,4 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <!-- USB Mass Storage -->
     <string name="usb_mass_storage_title">Mass storage</string>
     <string name="usb_mass_storage_summary">Enable USB mass storage</string>
-    
-    <!-- Device specific settings -->
-    <string name="advanced_settings_title">Device Settings</string>
 </resources>

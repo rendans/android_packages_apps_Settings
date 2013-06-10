@@ -20,6 +20,8 @@ import static android.provider.Settings.System.SCREEN_OFF_TIMEOUT;
 
 import android.app.ActivityManagerNative;
 import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.INotificationManager;
 import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -35,6 +37,7 @@ import android.hardware.display.WifiDisplay;
 import android.hardware.display.WifiDisplayStatus;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.os.ServiceManager;
 import android.os.Handler;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
@@ -68,6 +71,9 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_SCREEN_SAVER = "screensaver";
     private static final String KEY_WIFI_DISPLAY = "wifi_display";
 	private static final String KEY_LOCK_CLOCK = "lock_clock";
+	private static final String KEY_HALO_STATE = "halo_state";
+    private static final String KEY_HALO_HIDE = "halo_hide";
+    private static final String KEY_HALO_REVERSED = "halo_reversed";
 
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
 
@@ -76,11 +82,17 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private CheckBoxPreference mAccelerometer;
     private WarnedListPreference mFontSizePref;
     private CheckBoxPreference mNotificationPulse;
+    private ListPreference mHaloState;
+    private CheckBoxPreference mHaloHide;
+    private CheckBoxPreference mHaloReversed;
 
     private final Configuration mCurConfig = new Configuration();
     
     private ListPreference mScreenTimeoutPreference;
     private Preference mScreenSaverPreference;
+    
+    private static ContentResolver mContentResolver;
+    private INotificationManager mNotificationManager;
 
     private WifiDisplayStatus mWifiDisplayStatus;
     private Preference mWifiDisplayPreference;
@@ -99,6 +111,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         ContentResolver resolver = getActivity().getContentResolver();
 
         addPreferencesFromResource(R.xml.display_settings);
+        PreferenceScreen prefSet = getPreferenceScreen();
+        mContentResolver = getContentResolver();
 
         mAccelerometer = (CheckBoxPreference) findPreference(KEY_ACCELEROMETER);
         mAccelerometer.setPersistent(false);
@@ -140,6 +154,21 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                 Log.e(TAG, Settings.System.NOTIFICATION_LIGHT_PULSE + " not found");
             }
         }
+        
+        mNotificationManager = INotificationManager.Stub.asInterface(
+                ServiceManager.getService(Context.NOTIFICATION_SERVICE));
+
+        mHaloState = (ListPreference) prefSet.findPreference(KEY_HALO_STATE);
+        mHaloState.setValue(String.valueOf((isHaloPolicyBlack() ? "1" : "0")));
+        mHaloState.setOnPreferenceChangeListener(this);
+
+        mHaloHide = (CheckBoxPreference) prefSet.findPreference(KEY_HALO_HIDE);
+        mHaloHide.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.HALO_HIDE, 0) == 1);
+
+        mHaloReversed = (CheckBoxPreference) prefSet.findPreference(KEY_HALO_REVERSED);
+        mHaloReversed.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.HALO_REVERSED, 1) == 1);
 
         mDisplayManager = (DisplayManager)getActivity().getSystemService(
                 Context.DISPLAY_SERVICE);
@@ -155,6 +184,15 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
             }
         }
+        
+    private boolean isHaloPolicyBlack() {
+        try {
+            return mNotificationManager.isHaloPolicyBlack();
+        } catch (android.os.RemoteException ex) {
+                // System dead
+        }
+        return true;
+    }
 
     private void updateTimeoutPreferenceDescription(long currentTimeout) {
         ListPreference preference = mScreenTimeoutPreference;
@@ -346,6 +384,14 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             boolean value = mNotificationPulse.isChecked();
             Settings.System.putInt(getContentResolver(), Settings.System.NOTIFICATION_LIGHT_PULSE,
                     value ? 1 : 0);
+        } else if (preference == mHaloHide) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.HALO_HIDE,
+                    mHaloHide.isChecked() ? 1 : 0);  
+        } else if (preference == mHaloReversed) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.HALO_REVERSED,
+                    mHaloReversed.isChecked() ? 1 : 0);
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
@@ -360,12 +406,18 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             } catch (NumberFormatException e) {
                 Log.e(TAG, "could not persist screen timeout setting", e);
             }
-        }
-        if (KEY_FONT_SIZE.equals(key)) {
+        } else if (KEY_FONT_SIZE.equals(key)) {
             writeFontSizePreference(objValue);
-        }
-
-        return true;
+		} else if (preference == mHaloState) {
+            boolean state = Integer.valueOf((String) objValue) == 1;
+            try {
+                mNotificationManager.setHaloPolicyBlack(state);
+            } catch (android.os.RemoteException ex) {
+                // System dead
+            }
+            return true;
+    }
+    return false;
     }
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {

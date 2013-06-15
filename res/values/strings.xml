@@ -4717,6 +4717,8 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="halo_state_summary">For black/white-listing notifications pinging through HALO</string>
     <string name="halo_state_black">Black list</string>
     <string name="halo_state_white">White list</string>
+    <string name="halo_style_title">HALO minimal style</string>
+    <string name="halo_style_summary">Different style of HALO when applying this to settings</string>
     
     <!-- Hybrid -->
     <string name="hybrid_settings_title">Hybrid settings</string>

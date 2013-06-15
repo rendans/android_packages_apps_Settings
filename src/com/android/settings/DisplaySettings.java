@@ -75,6 +75,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 	private static final String KEY_HALO_STATE = "halo_state";
     private static final String KEY_HALO_HIDE = "halo_hide";
     private static final String KEY_HALO_REVERSED = "halo_reversed";
+    private static final String PREF_HALO_STYLE = "halo_style";
 
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
 
@@ -87,6 +88,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private ListPreference mHaloState;
     private CheckBoxPreference mHaloHide;
     private CheckBoxPreference mHaloReversed;
+    private CheckBoxPreference mHaloStyle;
 
     private final Configuration mCurConfig = new Configuration();
     
@@ -174,6 +176,10 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         mHaloReversed = (CheckBoxPreference) prefSet.findPreference(KEY_HALO_REVERSED);
         mHaloReversed.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.HALO_REVERSED, 1) == 1);
+                
+        mHaloStyle = (CheckBoxPreference) findPreference(PREF_HALO_STYLE);
+        mHaloStyle.setChecked(Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.HALO_STYLE, 0) == 1);
 
         mDisplayManager = (DisplayManager)getActivity().getSystemService(
                 Context.DISPLAY_SERVICE);
@@ -400,6 +406,11 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.HALO_REVERSED,
                     mHaloReversed.isChecked() ? 1 : 0);
+        } else if (preference == mHaloStyle) {
+            Settings.System.putInt(mContext.getContentResolver(),
+                    Settings.System.HALO_STYLE, 
+                    mHaloStyle.isChecked() ? 1 : 0);
+            Helpers.restartSystemUI();  
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }

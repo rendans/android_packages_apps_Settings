@@ -69,6 +69,13 @@
                 android:targetClass="com.aokp.romcontrol.ROMControlActivity"
                 android:targetPackage="com.aokp.romcontrol" />
     </header>
+    
+    <!-- Hybrid -->
+    <header
+        android:id="@+id/hybrid_settings"
+        android:title="@string/hybrid_settings_title"
+        android:icon="@drawable/ic_settings_jellybeer"
+        android:fragment="com.android.settings.beerbong.HybridSettings" />
 
 	<!-- Launcher -->
     <header

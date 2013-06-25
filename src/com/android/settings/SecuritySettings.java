@@ -92,7 +92,6 @@ public class SecuritySettings extends SettingsPreferenceFragment
     private ChooseLockSettingsHelper mChooseLockSettingsHelper;
     private LockPatternUtils mLockPatternUtils;
     private ListPreference mLockAfter;
-    private ListPreference mSmsSecurityCheck;
 
     private CheckBoxPreference mBiometricWeakLiveliness;
     private CheckBoxPreference mVisiblePattern;
@@ -325,7 +324,7 @@ public class SecuritySettings extends SettingsPreferenceFragment
             } catch (SettingNotFoundException e) {
                 mPrivacyGuardDefault.setChecked(false);
             }
-         }
+         
 
         return root;
     }

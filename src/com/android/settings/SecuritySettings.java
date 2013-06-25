@@ -63,6 +63,7 @@ public class SecuritySettings extends SettingsPreferenceFragment
     private static final String KEY_BIOMETRIC_WEAK_LIVELINESS = "biometric_weak_liveliness";
     private static final String KEY_LOCK_ENABLED = "lockenabled";
     private static final String KEY_VISIBLE_PATTERN = "visiblepattern";
+    private static final String KEY_VISIBLE_GESTURE = "visiblegesture";
     private static final String KEY_VISIBLE_ERROR_PATTERN = "visible_error_pattern";
     private static final String KEY_VISIBLE_DOTS = "visibledots";
     private static final String KEY_SECURITY_CATEGORY = "security_category";
@@ -95,6 +96,7 @@ public class SecuritySettings extends SettingsPreferenceFragment
 
     private CheckBoxPreference mBiometricWeakLiveliness;
     private CheckBoxPreference mVisiblePattern;
+    private CheckBoxPreference mVisibleGesture;
     private CheckBoxPreference mVisibleErrorPattern;
     private CheckBoxPreference mVisibleDots;
 
@@ -172,6 +174,9 @@ public class SecuritySettings extends SettingsPreferenceFragment
                 case DevicePolicyManager.PASSWORD_QUALITY_COMPLEX:
                     resid = R.xml.security_settings_password;
                     break;
+                case DevicePolicyManager.PASSWORD_QUALITY_GESTURE_WEAK:
+                    resid = R.xml.security_settings_gesture;
+                    break;
             }
         }
         addPreferencesFromResource(resid);
@@ -217,6 +222,9 @@ public class SecuritySettings extends SettingsPreferenceFragment
 
         // visible pattern
         mVisiblePattern = (CheckBoxPreference) root.findPreference(KEY_VISIBLE_PATTERN);
+        
+        // visible gesture
+            mVisibleGesture = (CheckBoxPreference) root.findPreference(KEY_VISIBLE_GESTURE);
         
         // Quick Unlock for PIN and Password Lockscreens
         mQuickUnlock = (CheckBoxPreference) root.findPreference(KEY_QUICK_UNLOCK);
@@ -546,6 +554,8 @@ public class SecuritySettings extends SettingsPreferenceFragment
             lockPatternUtils.setLockPatternEnabled(isToggled(preference));
         } else if (KEY_VISIBLE_PATTERN.equals(key)) {
             lockPatternUtils.setVisiblePatternEnabled(isToggled(preference));
+        } else if (KEY_VISIBLE_GESTURE.equals(key)) {
+            lockPatternUtils.setVisibleGestureEnabled(isToggled(preference));
         } else if (KEY_VISIBLE_ERROR_PATTERN.equals(key)) {
             lockPatternUtils.setShowErrorPath(isToggled(preference));
         } else if (KEY_VISIBLE_DOTS.equals(key)) {

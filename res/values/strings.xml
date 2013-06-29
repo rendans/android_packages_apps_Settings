@@ -4718,17 +4718,15 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="halo_state_summary">For black/white-listing notifications pinging through HALO</string>
     <string name="halo_state_black">Black list</string>
     <string name="halo_state_white">White list</string>
-    <string name="halo_style_title">HALO style</string>
-    <string name="halo_style_summary">Different style of HALO bubbles</string>
-
-    <string name="halo_blue">Blue (default)</string>
-    <string name="halo_green">Green</string>
-    <string name="halo_white">White</string>
-    <string name="halo_purple">Purple</string>
-    <string name="halo_red">Red</string>
-    <string name="halo_pink">Pink</string>
-    <string name="halo_yellow">Yellow</string>
-    <string name="halo_black">Black</string>
+    <string name="halo_pause_title">Pause active app</string>
+    <string name="halo_pause_summary">When opening an app with HALO the underlying app will get paused</string>
+    <string name="halo_colors_title">Custom colors</string>
+    <string name="halo_colors_summary">Enable custom colors for HALO instead of the default theme colors</string>
+    <string name="halo_circle_color_title">Circle color</string>
+    <string name="halo_bubble_color_title">Speech bubble color</string>
+    <string name="halo_bubble_text_color_title">Speech bubble text color</string>
+    <string name="halo_effect_color_title">Effect color</string>
+    <string name="halo_effect_color_summary">Requires a systemui restart</string>
     
     <!-- Hybrid -->
     <string name="hybrid_settings_title">Hybrid settings</string>
@@ -4940,5 +4938,15 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="lockscreen_background_color_fill">Color fill</string>
     <string name="lockscreen_background_custom_image">Custom image</string>
     <string name="lockscreen_background_default_wallpaper">Default wallpaper</string>
+    
+    <!-- Color Picker -->
+    <string name="dialog_color_picker">Color Picker</string>
+    <string name="press_color_to_apply">Press on Color to apply</string>
+    <string name="arrow_right">→</string>
+    <string name="arrow_down">↓</string>
+    <string name="hex">Hex:</string>
+    <string name="hex_hint">#FF000000</string>
+    <string name="set">Set</string>
+    <string name="ics_color">Holo</string>
 
     </resources>

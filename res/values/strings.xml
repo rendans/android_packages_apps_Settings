@@ -4795,6 +4795,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="halo_effect_color_summary">Requires a systemui restart</string>
     
     <!-- Hybrid -->
+    <string name="hybrid_settings_enabled">Enable</string>
     <string name="hybrid_settings_title">Hybrid settings</string>
 
     <string name="uimode_title">UIMode</string>

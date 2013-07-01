@@ -1,6 +1,7 @@
 package com.android.settings.beerbong;
 
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -10,6 +11,9 @@ import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
+import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.SwitchPreference;
+import android.provider.Settings;
 import android.util.ExtendedPropertiesUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +27,8 @@ import com.android.settings.SettingsPreferenceFragment;
 public class HybridSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
+	private static final String PREF_HYBRID_ENABLED = "ui_enabled";
+
     private PreferenceScreen mDpiScreen;
     private Preference mAppsDpi;
     private ListPreference mUimode;
@@ -31,6 +37,7 @@ public class HybridSettings extends SettingsPreferenceFragment implements
     private CheckBoxPreference mAutoBackup;
     private Preference mBackup;
     private Preference mRestore;
+    private SwitchPreference mHybridEnabled;
 
     private Context mContext;
 
@@ -42,6 +49,8 @@ public class HybridSettings extends SettingsPreferenceFragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = getActivity();
+        PreferenceScreen prefSet = getPreferenceScreen();
+        ContentResolver cr = mContext.getContentResolver();
 
         addPreferencesFromResource(R.xml.hybrid_settings);
 
@@ -80,6 +89,12 @@ public class HybridSettings extends SettingsPreferenceFragment implements
         mAutoBackup.setChecked(isAutoBackup);
 
         mRestore.setEnabled(Applications.backupExists());
+        
+        mHybridEnabled = (SwitchPreference) findPreference(PREF_HYBRID_ENABLED);
+        mHybridEnabled.setChecked(Settings.System.getInt(getActivity()
+                .getContentResolver(), Settings.System.HYBRID_ENABLED,
+                0) == 1);
+        mHybridEnabled.setOnPreferenceChangeListener(this);
 
         updateSummaries();
     }
@@ -113,6 +128,11 @@ public class HybridSettings extends SettingsPreferenceFragment implements
         if ("ui_mode".equals(key)) {
             String layout = (String) objValue;
             Applications.addSystemLayout(mContext, layout);
+        } else if (preference == mHybridEnabled) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.HYBRID_ENABLED,
+                    (Boolean) objValue ? 1 : 0);
+            return true;
         } else if ("apps_ui_mode".equals(key)) {
             String layout = (String) objValue;
             Applications.addAppsLayout(mContext, layout);

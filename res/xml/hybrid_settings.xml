@@ -51,12 +51,6 @@
             android:summary="@string/per_app_layout_summary"
             android:dependency="ui_enabled" />
 
-        <Preference
-            android:key="navbar_height"
-            android:title="@string/navbar_height_title"
-            android:summary="@string/navbar_height_summary"
-            android:dependency="ui_enabled" />
-
         <PreferenceScreen
             android:key="widgets"
             android:fragment="com.android.settings.beerbong.Widgets"

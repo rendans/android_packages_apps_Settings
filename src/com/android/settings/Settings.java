@@ -27,6 +27,7 @@ import com.android.settings.bluetooth.BluetoothEnabler;
 import com.android.settings.deviceinfo.Memory;
 import com.android.settings.fuelgauge.PowerUsageSummary;
 import com.android.settings.th.TRDSEnabler;
+import com.android.settings.th.LightUI;
 import com.android.settings.profiles.ProfileEnabler;
 import com.android.settings.vpn2.VpnSettings;
 import com.android.settings.wifi.WifiEnabler;
@@ -100,6 +101,7 @@ public class Settings extends PreferenceActivity
     private Header mParentHeader;
     private boolean mInLocalHeaderSwitch;
     private static Switch mTRDSSwitch;
+    private static Switch mLightUISwitch;
 
     // Show only these settings for restricted users
     private int[] SETTINGS_FOR_RESTRICTED = {
@@ -609,6 +611,7 @@ public class Settings extends PreferenceActivity
         private final BluetoothEnabler mBluetoothEnabler;
         private final ProfileEnabler mProfileEnabler;
         private final TRDSEnabler mTRDSEnabler;
+        private final LightUI mLightUI;
         private AuthenticatorHelper mAuthHelper;
 
         private static class HeaderViewHolder {
@@ -621,11 +624,12 @@ public class Settings extends PreferenceActivity
         private LayoutInflater mInflater;
 
         static int getHeaderType(Header header) {
-            if (header.fragment == null && header.intent == null && header.id != R.id.trds_settings) {
+            if (header.fragment == null && header.intent == null && header.id != R.id.trds_settings && header.id != R.id.lightui_settings) {
                 return HEADER_TYPE_CATEGORY;
             } else if (header.id == R.id.wifi_settings
                     || header.id == R.id.bluetooth_settings
                     || header.id == R.id.profiles_settings
+                    || header.id == R.id.lightui_settings
                     || header.id == R.id.trds_settings) {
                 return HEADER_TYPE_SWITCH;
             } else {
@@ -672,6 +676,7 @@ public class Settings extends PreferenceActivity
             mBluetoothEnabler = new BluetoothEnabler(context, new Switch(context));
             mProfileEnabler = new ProfileEnabler(context, new Switch(context));
             mTRDSEnabler = new TRDSEnabler(context, new Switch(context));
+            mLightUI = new LightUI(context, new Switch(context));
         }
 
         @Override
@@ -735,6 +740,9 @@ public class Settings extends PreferenceActivity
                     } else if (header.id == R.id.trds_settings) {
                         mTRDSSwitch = (Switch) view.findViewById(R.id.switchWidget);
                         mTRDSEnabler.setSwitch(holder.switch_);
+                    } else if (header.id == R.id.lightui_settings) {
+                        mLightUISwitch = (Switch) view.findViewById(R.id.switchWidget);
+                        mLightUI.setSwitch(holder.switch_);
                     }
                     // No break, fall through on purpose to update common fields
 
@@ -773,6 +781,7 @@ public class Settings extends PreferenceActivity
             mBluetoothEnabler.resume();
             mProfileEnabler.resume();
             mTRDSEnabler.resume();
+            mLightUI.resume();
         }
 
         public void pause() {
@@ -780,6 +789,7 @@ public class Settings extends PreferenceActivity
             mBluetoothEnabler.pause();
             mProfileEnabler.pause();
             mTRDSEnabler.pause();
+            mLightUI.pause();
         }
     }
 
@@ -799,6 +809,9 @@ public class Settings extends PreferenceActivity
         }
         if (header.id == R.id.trds_settings) {
             mTRDSSwitch.toggle();
+        }
+        if (header.id == R.id.lightui_settings) {
+            mLightUISwitch.toggle();
         }
     }
 

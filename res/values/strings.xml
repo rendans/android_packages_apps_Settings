@@ -4753,6 +4753,9 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <!-- TRDS Settings -->
     <string name="trds_settings_title">Dark XenonHD</string>
     
+    <!-- Light UI -->
+    <string name="lightui_settings_title">Light XenonHD</string>
+    
     <!-- Permissions Management -->
     <string name="permissions_settings_title">Permissions Management</string>
     

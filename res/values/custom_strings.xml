@@ -46,4 +46,10 @@
 
     <!-- Launcher settings  -->
     <string name="launcher_settings_title">Launcher</string>
+
+    <string name="xenonhd_extras_title">Extras</string>
+
+    <!-- Lockscreen battery ring -->
+    <string name="battery_around_lockscreen_ring">Battery around unlock ring</string>
+
 </resources>

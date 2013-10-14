@@ -49,6 +49,8 @@ public class WifiApEnabler {
 
     ConnectivityManager mCm;
     private String[] mWifiRegexs;
+    /* Indicates if we have to wait for WIFI_STATE_CHANGED intent */
+    private boolean mWaitForWifiStateChange;
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
@@ -57,6 +59,11 @@ public class WifiApEnabler {
             if (WifiManager.WIFI_AP_STATE_CHANGED_ACTION.equals(action)) {
                 handleWifiApStateChanged(intent.getIntExtra(
                         WifiManager.EXTRA_WIFI_AP_STATE, WifiManager.WIFI_AP_STATE_FAILED));
+            } else if (WifiManager.WIFI_STATE_CHANGED_ACTION.equals(action)) {
+                if (mWaitForWifiStateChange == true) {
+                     handleWifiStateChanged(intent.getIntExtra(
+                         WifiManager.EXTRA_WIFI_STATE, WifiManager.WIFI_STATE_UNKNOWN));
+                }
             } else if (ConnectivityManager.ACTION_TETHER_STATE_CHANGED.equals(action)) {
                 ArrayList<String> available = intent.getStringArrayListExtra(
                         ConnectivityManager.EXTRA_AVAILABLE_TETHER);
@@ -77,6 +84,7 @@ public class WifiApEnabler {
         mCheckBox = checkBox;
         mOriginalSummary = checkBox.getSummary();
         checkBox.setPersistent(false);
+	mWaitForWifiStateChange = true;
 
         mWifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         mCm = (ConnectivityManager)mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -86,6 +94,8 @@ public class WifiApEnabler {
         mIntentFilter = new IntentFilter(WifiManager.WIFI_AP_STATE_CHANGED_ACTION);
         mIntentFilter.addAction(ConnectivityManager.ACTION_TETHER_STATE_CHANGED);
         mIntentFilter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+	mIntentFilter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
+
     }
 
     public void resume() {
@@ -110,6 +120,7 @@ public class WifiApEnabler {
 
     public void setSoftapEnabled(boolean enable) {
         final ContentResolver cr = mContext.getContentResolver();
+	int wifiSavedState = 0;
         /**
          * Disable Wifi if enabling tethering
          */
@@ -119,6 +130,23 @@ public class WifiApEnabler {
             mWifiManager.setWifiEnabled(false);
             Settings.Global.putInt(cr, Settings.Global.WIFI_SAVED_STATE, 1);
         }
+        /**
+         * Check if we have to wait for the WIFI_STATE_CHANGED intent
+         * before we re-enable the Checkbox.
+         */
+        if (!enable) {
+            mWaitForWifiStateChange = false;
+            try {
+                wifiSavedState = Settings.Global.getInt(cr, Settings.Global.WIFI_SAVED_STATE);
+            } catch (Settings.SettingNotFoundException e) {
+                ;
+            }
+
+            if (wifiSavedState == 1) {
+                 mWaitForWifiStateChange = true;
+            }
+        }
+
 
         if (mWifiManager.setWifiApEnabled(null, enable)) {
             /* Disable here, enabled on receiving success broadcast */
@@ -131,7 +159,7 @@ public class WifiApEnabler {
          *  If needed, restore Wifi on tether disable
          */
         if (!enable) {
-            int wifiSavedState = 0;
+            wifiSavedState = 0;
             try {
                 wifiSavedState = Settings.Global.getInt(cr, Settings.Global.WIFI_SAVED_STATE);
             } catch (Settings.SettingNotFoundException e) {
@@ -199,7 +227,9 @@ public class WifiApEnabler {
             case WifiManager.WIFI_AP_STATE_DISABLED:
                 mCheckBox.setChecked(false);
                 mCheckBox.setSummary(mOriginalSummary);
-                enableWifiCheckBox();
+                if (mWaitForWifiStateChange == false) {
+                    enableWifiCheckBox();
+                }
                 break;
             default:
                 mCheckBox.setChecked(false);
@@ -207,4 +237,15 @@ public class WifiApEnabler {
                 enableWifiCheckBox();
         }
     }
+
+    private void handleWifiStateChanged(int state) {
+        switch (state) {
+            case WifiManager.WIFI_STATE_ENABLED:
+            case WifiManager.WIFI_STATE_UNKNOWN:
+                enableWifiCheckBox();
+                break;
+            default:
+        }
+    }
+
 }

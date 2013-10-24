@@ -4921,6 +4921,9 @@
     <string name="ad_redisplay_1h">1 hour</string>
     <string name="ad_redisplay_2h">2 hours</string>
     <string name="ad_redisplay_5h">5 hours</string>
+    <string name="ad_pocket_mode_off">Off</string>
+    <string name="ad_pocket_mode_notifications">Notifications only</string>
+    <string name="ad_pocket_mode_always">Always</string>
 
     <!-- User app limits screen title [CHAR LIMIT=35] -->
     <string name="user_restrictions_title">Application and content restrictions</string>

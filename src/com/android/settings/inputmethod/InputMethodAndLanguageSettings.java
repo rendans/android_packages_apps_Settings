@@ -92,6 +92,8 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
     private static final String KEY_POINTER_SETTINGS_CATEGORY = "pointer_settings_category";
     private static final String KEY_STYLUS_GESTURES = "stylus_gestures";
     private static final String KEY_STYLUS_ICON_ENABLED = "stylus_icon_enabled";
+    private static final String KEY_HIGH_TOUCH_SENSITIVITY = "high_touch_sensitivity";
+    private static final String KEY_TRACKPAD_SETTINGS = "gesture_pad_settings";
 
     // false: on ICS or later
     private static final boolean SHOW_INPUT_METHOD_SWITCHER_SETTINGS = false;
@@ -184,6 +186,8 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
                 pointerSettingsCategory.removePreference(mStylusIconEnabled);
             }
 
+            Utils.updatePreferenceToSpecificActivityFromMetaDataOrRemove(getActivity(),
+                            pointerSettingsCategory, KEY_TRACKPAD_SETTINGS);
             if (pointerSettingsCategory.getPreferenceCount() == 0) {
                 getPreferenceScreen().removePreference(pointerSettingsCategory);
             }

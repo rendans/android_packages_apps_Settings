@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
+ * This code has been modified. Portions copyright (C) 2013, ParanoidAndroid Project.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -77,7 +78,6 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private static final String KEY_DOCK_AUDIO_MEDIA_ENABLED = "dock_audio_media_enabled";
     private static final String KEY_VOLUME_ADJUST_SOUNDS = "volume_adjust_sounds";
     private static final String KEY_VOLUME_WAKE_SCREEN = "volume_wake_screen";
-    private static final String KEY_VOLUME_MUSIC_CONTROLS = "volume_music_controls";
 
     private static final String[] NEED_VOICE_CAPABILITY = {
             KEY_RINGTONE, KEY_DTMF_TONE, KEY_CATEGORY_CALLS,
@@ -97,7 +97,6 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private Preference mNotificationPreference;
     private CheckBoxPreference mVolumeAdjustSounds;
     private CheckBoxPreference mVolumeWakeScreen;
-    private CheckBoxPreference mVolumeMusicCtrl;
 
     private Runnable mRingtoneLookupRunnable;
 
@@ -185,10 +184,6 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         mVolumeWakeScreen = (CheckBoxPreference) findPreference(KEY_VOLUME_WAKE_SCREEN);
         mVolumeWakeScreen.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.VOLUME_WAKE_SCREEN, 0) == 1);
-
-        mVolumeMusicCtrl = (CheckBoxPreference) findPreference(KEY_VOLUME_MUSIC_CONTROLS);
-        mVolumeMusicCtrl.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.VOLUME_MUSIC_CONTROLS, 0) == 1);
 
         mRingtonePreference = findPreference(KEY_RINGTONE);
         mNotificationPreference = findPreference(KEY_NOTIFICATION_SOUND);
@@ -325,15 +320,8 @@ public class SoundSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getContentResolver(), Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED ,
                     mVolumeAdjustSounds.isChecked() ? 1 : 0);
         } else if (preference == mVolumeWakeScreen) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.VOLUME_WAKE_SCREEN,
-                    mVolumeWakeScreen.isChecked()
-                    ? 1 : 0);
-        } else if (preference == mVolumeMusicCtrl) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.VOLUME_MUSIC_CONTROLS,
-                    mVolumeMusicCtrl.isChecked()
-                    ? 1 : 0);
+            Settings.System.putInt(getContentResolver(), Settings.System.VOLUME_WAKE_SCREEN,
+                    mVolumeWakeScreen.isChecked() ? 1 : 0);
         } else if (preference == mMusicFx) {
             // let the framework fire off the intent
             return false;

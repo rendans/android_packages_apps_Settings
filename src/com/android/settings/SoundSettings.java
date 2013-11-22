@@ -182,7 +182,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
                 Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, 1) != 0);
 
         mVolumeWakeScreen = (CheckBoxPreference) findPreference(KEY_VOLUME_WAKE_SCREEN);
-        mVolumeWakeScreen.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+        mVolumeWakeScreen.setChecked(Settings.System.getInt(resolver,
                 Settings.System.VOLUME_WAKE_SCREEN, 0) == 1);
 
         mRingtonePreference = findPreference(KEY_RINGTONE);

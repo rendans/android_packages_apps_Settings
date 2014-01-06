@@ -91,6 +91,12 @@
         android:key="do_whatever_you_want_to_do_man"
         android:title="@string/random_stuff" >
 
+        <SwitchPreference
+            android:key="force_expanded_notifications"
+            android:title="@string/force_expanded_notifications_title"
+            android:summary="@string/force_expanded_notifications_summary"
+            android:persistent="false" />
+
         <!-- Screen Recorder -->
         <PreferenceScreen
            android:key="screen_recorder"

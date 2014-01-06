@@ -41,12 +41,14 @@ Preference.OnPreferenceChangeListener {
     private static final String SHOW_CLEAR_ALL_RECENTS = "show_clear_all_recents";
     private static final String RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
     private static final String KEY_TOAST_ANIMATION = "toast_animation";
+    private static final String FORCE_EXPANDED_NOTIFICATIONS = "force_expanded_notifications";
 
     private Context mContext;
 
     private SwitchPreference mRecentsClearAll;
     private ListPreference mRecentsClearAllLocation;
     private ListPreference mToastAnimation;
+    private SwitchPreference mForceExpanded;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -77,6 +79,11 @@ Preference.OnPreferenceChangeListener {
         mRecentsClearAllLocation.setValue(String.valueOf(location));
         mRecentsClearAllLocation.setOnPreferenceChangeListener(this);
         updateRecentsLocation(location);
+
+        mForceExpanded = (SwitchPreference) prefSet.findPreference(FORCE_EXPANDED_NOTIFICATIONS);
+        mForceExpanded.setChecked(Settings.System.getIntForUser(resolver,
+                Settings.System.FORCE_EXPANDED_NOTIFICATIONS, 0, UserHandle.USER_CURRENT) == 1);
+        mForceExpanded.setOnPreferenceChangeListener(this);
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
@@ -96,6 +103,11 @@ Preference.OnPreferenceChangeListener {
             Settings.System.putString(getContentResolver(), Settings.System.TOAST_ANIMATION, (String) objValue);
             mToastAnimation.setSummary(mToastAnimation.getEntries()[index]);
             Toast.makeText(mContext, "Toast Test", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (preference == mForceExpanded) {
+            boolean show = (Boolean) objValue;
+            Settings.System.putIntForUser(getActivity().getContentResolver(),
+            Settings.System.FORCE_EXPANDED_NOTIFICATIONS, show ? 1 : 0, UserHandle.USER_CURRENT);
             return true;
         }
         return false;

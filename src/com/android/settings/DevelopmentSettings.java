@@ -333,7 +333,7 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
             disableForUser(mQuickBoot);
         }
 
-        if (!isPackageInstalled(getActivity(), QUICKBOOT_PACKAGE_NAME)) {
+        if (!Utils.isPackageInstalled(getActivity(), QUICKBOOT_PACKAGE_NAME)) {
             removePreference(mQuickBoot);
         }
 
@@ -1739,14 +1739,6 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
                 }
             }
             return null;
-        }
-    }
-
-    private static boolean isPackageInstalled(Context context, String packageName) {
-        try {
-            return context.getPackageManager().getPackageInfo(packageName, 0) != null;
-        } catch (NameNotFoundException e) {
-            return false;
         }
     }
 

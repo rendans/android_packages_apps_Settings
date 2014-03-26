@@ -21,6 +21,7 @@
 -keep class com.android.settings.slim.**
 -keep class com.android.settings.vanir.**
 -keep class com.android.settings.xenonhd.*Settings
+-keep class com.android.settings.voicewakeup.*
 
 # Keep click responders
 -keepclassmembers class com.android.settings.inputmethod.UserDictionaryAddWordActivity {

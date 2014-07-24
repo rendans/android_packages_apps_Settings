@@ -689,6 +689,57 @@ public class WifiSettings extends RestrictedSettingsFragment
         TextView emptyView = (TextView) getActivity().findViewById(android.R.id.empty);
         getListView().setEmptyView(emptyView);
         return emptyView;
+}
+
+    private boolean prepareWifiAssistantCard() {
+        if (mWifiAssistantPreference == null) {
+            mWifiAssistantPreference = new WifiAssistantPreference();
+        }
+
+        if (NetworkScorerAppManager.getActiveScorer(getActivity()) != null) {
+            // A scorer is already enabled; don't show the card.
+            return false;
+        }
+
+        Collection<NetworkScorerAppData> scorers =
+                NetworkScorerAppManager.getAllValidScorers(getActivity());
+        if (scorers.isEmpty()) {
+            // No scorers are available to enable; don't show the card.
+            return false;
+        }
+
+        SharedPreferences sharedPreferences = getPreferenceScreen().getSharedPreferences();
+        long lastTimeoutEndTime = sharedPreferences.getLong(KEY_ASSISTANT_START_TIME, 0);
+        long dismissTime = sharedPreferences.getLong(KEY_ASSISTANT_DISMISS_TIME, 0);
+
+        boolean shouldShow = ((System.currentTimeMillis() - lastTimeoutEndTime) > dismissTime);
+        if (shouldShow) {
+            // TODO: b/13780935 - Implement proper scorer selection. Rather than pick the first
+            // scorer on the system, we should allow the user to select one.
+            mWifiAssistantApp = scorers.iterator().next();
+        }
+        return shouldShow;
+    }
+
+    private void setWifiAssistantTimeout() {
+        SharedPreferences sharedPreferences = getPreferenceScreen().getSharedPreferences();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        long dismissTime = sharedPreferences.getLong(KEY_ASSISTANT_DISMISS_TIME, 0);
+
+        if (dismissTime == 0) {
+            dismissTime = MILI_SECONDS_30_DAYS;
+        } else if (dismissTime == MILI_SECONDS_30_DAYS) {
+            dismissTime = MILI_SECONDS_90_DAYS;
+        } else if (dismissTime == MILI_SECONDS_90_DAYS) {
+            dismissTime = MILI_SECONDS_180_DAYS;
+        } else if (dismissTime == MILI_SECONDS_180_DAYS) {
+            dismissTime = java.lang.Long.MAX_VALUE;
+        }
+
+        editor.putLong(KEY_ASSISTANT_DISMISS_TIME, dismissTime);
+        editor.putLong(KEY_ASSISTANT_START_TIME, System.currentTimeMillis());
+        editor.apply();
+>>>>>>> b0d67ff... Fixed an illustrious NullPointer bug on Wifi Assistant
     }
 
     private void setOffMessage() {

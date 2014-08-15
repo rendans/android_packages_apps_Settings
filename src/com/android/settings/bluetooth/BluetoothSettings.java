@@ -194,6 +194,8 @@ public final class BluetoothSettings extends DeviceListPreferenceFragment implem
         super.onResume();
 
         mInitiateDiscoverable = true;
+        // Make the device visible to other devices.
+        mLocalAdapter.setScanMode(BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE);
 
         if (isUiRestricted()) {
             setDeviceListGroup(getPreferenceScreen());
@@ -216,9 +218,7 @@ public final class BluetoothSettings extends DeviceListPreferenceFragment implem
         }
 
         // Make the device only visible to connected devices.
-        if (mLocalAdapter != null) {
-            mLocalAdapter.setScanMode(BluetoothAdapter.SCAN_MODE_CONNECTABLE);
-        }
+        mLocalAdapter.setScanMode(BluetoothAdapter.SCAN_MODE_CONNECTABLE);
 
         if (isUiRestricted()) {
             return;
@@ -317,9 +317,8 @@ public final class BluetoothSettings extends DeviceListPreferenceFragment implem
             removeAllDevices();
         }
 
-        mLocalManager.getCachedDeviceManager().clearNonBondedDevices();
-        if (mAvailableDevicesCategory != null)
-            mAvailableDevicesCategory.removeAll();
+        mLocalManager.getCachedDeviceManager().clearCachedDevices();
+        mAvailableDevicesCategory.removeAll();
         mInitialScanStarted = true;
         mLocalAdapter.startScanning(true);
     }

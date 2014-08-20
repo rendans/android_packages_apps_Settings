@@ -492,7 +492,8 @@ class AccessPoint extends Preference {
                 if (result.seen == 0)
                     continue;
 
-                if (result.autoJoinStatus != ScanResult.ENABLED) numBlackListed++;
+                if (result.autoJoinStatus != ScanResult.ENABLED)
+                    numBlackListed++;
 
                 if (result.frequency >= LOWER_FREQ_5GHZ
                         && result.frequency <= HIGHER_FREQ_5GHZ) {

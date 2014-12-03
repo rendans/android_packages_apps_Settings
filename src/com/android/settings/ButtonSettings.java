@@ -53,6 +53,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
 	private static final String DISABLE_NAV_KEYS = "disable_nav_keys";
 	private static final String KEY_POWER_END_CALL = "power_end_call";
     private static final String KEY_HOME_ANSWER_CALL = "home_answer_call";
+	private static final String KEY_VOLUME_WAKE_DEVICE = "volume_key_wake_device";
 
     private static final String CATEGORY_POWER = "power_key";
     private static final String CATEGORY_HOME = "home_key";
@@ -93,6 +94,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
 	private CheckBoxPreference mDisableNavigationKeys;
     private CheckBoxPreference mPowerEndCall;
     private CheckBoxPreference mHomeAnswerCall;
+	private CheckBoxPreference mVolumeKeyWakeControl;
 
     private PreferenceCategory mNavigationPreferencesCat;
 
@@ -217,6 +219,14 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
         } else {
             prefScreen.removePreference(menuCategory);
         }
+
+		if (Utils.hasVolumeRocker(getActivity())) {
+            int wakeControlAction = Settings.System.getInt(resolver,
+                    Settings.System.VOLUME_WAKE_SCREEN, 0);
+            mVolumeKeyWakeControl = initCheckBox(KEY_VOLUME_WAKE_DEVICE, (wakeControlAction == 1));
+        } else {
+            prefScreen.removePreference(volumeCategory);
+        }
     }
 
 	@Override
@@ -244,6 +254,22 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
         }
     }
 
+	private CheckBoxPreference initCheckBox(String key, boolean checked) {
+        CheckBoxPreference checkBoxPreference = (CheckBoxPreference) getPreferenceManager()
+                .findPreference(key);
+        if (checkBoxPreference != null) {
+            checkBoxPreference.setChecked(checked);
+            checkBoxPreference.setOnPreferenceChangeListener(this);
+        }
+        return checkBoxPreference;
+    }
+
+    private void handleCheckBoxChange(CheckBoxPreference pref, Object newValue, String setting) {
+        Boolean value = (Boolean) newValue;
+        int intValue = (value) ? 1 : 0;
+        Settings.System.putInt(getContentResolver(), setting, intValue);
+    }
+
     private ListPreference initActionList(String key, int value) {
         ListPreference list = (ListPreference) getPreferenceScreen().findPreference(key);
         list.setValue(Integer.toString(value));
@@ -255,7 +281,6 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     private void handleActionListChange(ListPreference pref, Object newValue, String setting) {
         String value = (String) newValue;
         int index = pref.findIndexOfValue(value);
-
         pref.setSummary(pref.getEntries()[index]);
         Settings.System.putInt(getContentResolver(), setting, Integer.valueOf(value));
     }
@@ -277,6 +302,10 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
         } else if (preference == mMenuLongPressAction) {
             handleActionListChange(mMenuLongPressAction, newValue,
                     Settings.System.KEY_MENU_LONG_PRESS_ACTION);
+            return true;
+		} else if (preference == mVolumeKeyWakeControl) {
+            handleCheckBoxChange(mVolumeKeyWakeControl, newValue,
+                    Settings.System.VOLUME_WAKE_SCREEN);
             return true;
         }
         return false;

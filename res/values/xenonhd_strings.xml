@@ -24,6 +24,7 @@
     <string name="default_string">Default</string>
     <string name="choose_app">Choose application</string>
     <string name="reset_message">Reset all entries to default?</string>
+    <string name="help">Help</string>
 
     <!-- Sound settings -->
     <string name="advanced_sound_title">Advanced options</string>

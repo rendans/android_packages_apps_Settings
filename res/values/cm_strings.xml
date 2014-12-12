@@ -229,7 +229,7 @@
 
     <!-- Advanced reboot options -->
     <string name="advanced_reboot_title">Advanced reboot</string>
-    <string name="advanced_reboot_summary">When unlocked, include options in the power menu for rebooting into recovery, bootloader or performing a soft reboot</string>
+    <string name="advanced_reboot_summary">When unlocked, include options in the power menu for rebooting into recovery, bootloader or performing a soft reboot (press and hold Power Down to activate options)</string>
 
     <!-- tap-to-sleep -->
     <string name="double_tap_to_sleep_title">Double-tap to sleep</string>

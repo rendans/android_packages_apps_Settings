@@ -242,6 +242,10 @@
     <string name="saving_protected_components">Saving component state\u2026</string>
     <string name="launch_app">Launch app</string>
 
+    <!-- Weather in status bar -->
+    <string name="status_bar_show_weather_title">Show weather</string>
+    <string name="status_bar_show_weather_summary">Show the weather in the status bar header</string>
+
     <string name="pa_login_username_hint">Username (email)</string>
     <string name="pa_login_password_hint">Password</string>
     <string name="pa_login_submit_button">Sign in</string>

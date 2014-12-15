@@ -133,4 +133,8 @@
     <string name="animation_no_scroll_summary_off">Disabled</string>
     <string name="scroll_disclaimer_summary">Note: Most apps need to be restarted for custom values to take effect</string>
     <string name="animation_settings_reset_message">Reset all animation settings to default?</string>
+
+    <!-- Battery saver -->
+    <string name="battery_saver_title">Warning color</string>
+    <string name="battery_saver_style_reset_message">Reset battery saver warning color?</string>
 </resources>

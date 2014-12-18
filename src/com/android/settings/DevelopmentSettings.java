@@ -187,7 +187,7 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
 
     private CheckBoxPreference mEnableAdb;
     private Preference mClearAdbKeys;
-	private SwitchPreference mAdbNotify;
+	private CheckBoxPreference mAdbNotify;
     private CheckBoxPreference mEnableTerminal;
     private Preference mBugreport;
     private CheckBoxPreference mBugreportInPower;
@@ -295,7 +295,7 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
             }
         }
         mAllPrefs.add(mClearAdbKeys);
-		mAdbNotify = findAndInitSwitchPref(ADB_NOTIFY);
+		mAdbNotify = findAndInitCheckboxPref(ADB_NOTIFY);
         mEnableTerminal = findAndInitCheckboxPref(ENABLE_TERMINAL);
         if (!isPackageInstalled(getActivity(), TERMINAL_APP_PACKAGE)) {
             debugDebuggingCategory.removePreference(mEnableTerminal);
@@ -539,7 +539,7 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
         mHaveDebugSettings = false;
         updateCheckBox(mEnableAdb, Settings.Global.getInt(cr,
                 Settings.Global.ADB_ENABLED, 0) != 0);
-		updateSwitchPref(mAdbNotify, Settings.Secure.getInt(cr,
+		updateCheckBox(mAdbNotify, Settings.Secure.getInt(cr,
                 Settings.Secure.ADB_NOTIFY, 1) != 0);
         if (mEnableTerminal != null) {
             updateCheckBox(mEnableTerminal,

@@ -31,7 +31,7 @@
         android:defaultValue="true" />
 
     <PreferenceCategory
-        android:title="@string/status_bar_clock">
+        android:title="@string/status_bar_clock_style">
 
         <PreferenceScreen
             android:fragment="com.android.settings.cyanogenmod.StatusBarClockStyle"
@@ -39,6 +39,9 @@
             android:title="@string/status_bar_clock" />
 
     </PreferenceCategory>
+
+	<PreferenceCategory
+        android:title="@string/battery_style">
 
     <ListPreference
         android:key="status_bar_battery_style"
@@ -54,4 +57,5 @@
         android:entries="@array/status_bar_battery_percentage_entries"
         android:entryValues="@array/status_bar_battery_percentage_values" />
 
+	</PreferenceCategory>
 </PreferenceScreen>

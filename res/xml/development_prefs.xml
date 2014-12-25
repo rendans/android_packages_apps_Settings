@@ -188,6 +188,12 @@
             android:title="@string/force_rtl_layout_all_locales"
             android:summary="@string/force_rtl_layout_all_locales_summary"/>
 
+        <PreferenceScreen
+            android:key="interface_animation_scroll"
+            android:fragment="com.android.settings.xenonhd.ScrollAnimationInterfaceSettings"
+            android:title="@string/scrolling_title"
+            android:summary="@string/scrolling_summary" />
+
         <ListPreference
             android:key="window_animation_scale"
             android:title="@string/window_animation_scale_title"

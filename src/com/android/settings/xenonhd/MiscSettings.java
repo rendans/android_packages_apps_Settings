@@ -49,6 +49,7 @@ Preference.OnPreferenceChangeListener {
     private ListPreference mRecentsClearAllLocation;
     private ListPreference mToastAnimation;
     private SwitchPreference mForceExpanded;
+    private Preference mHeadsUp;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -84,6 +85,25 @@ Preference.OnPreferenceChangeListener {
         mForceExpanded.setChecked(Settings.System.getIntForUser(resolver,
                 Settings.System.FORCE_EXPANDED_NOTIFICATIONS, 0, UserHandle.USER_CURRENT) == 1);
         mForceExpanded.setOnPreferenceChangeListener(this);
+
+        mHeadsUp = findPreference(Settings.System.HEADS_UP_NOTIFICATION);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mSettingsObserver.register(true);
+        
+        boolean headsUpEnabled = Settings.System.getInt(
+                getContentResolver(), Settings.System.HEADS_UP_NOTIFICATION, 0) == 1;
+        mHeadsUp.setSummary(headsUpEnabled
+                ? R.string.summary_heads_up_enabled : R.string.summary_heads_up_disabled);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mSettingsObserver.register(false);
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {

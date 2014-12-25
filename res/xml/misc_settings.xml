@@ -114,6 +114,12 @@
         android:key="do_whatever_you_want_to_do_man"
         android:title="@string/random_stuff" >
 
+        <!-- Heads up notifications -->
+        <Preference
+                android:key="heads_up_enabled"
+                android:fragment="com.android.settings.headsup.HeadsUpSettings"
+                android:title="@string/category_heads_up" />
+
         <PreferenceScreen
             android:key="expanded_desktop"
             android:title="@string/power_menu_expanded_desktop"

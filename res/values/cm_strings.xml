@@ -604,6 +604,7 @@
     <string name="intensity_str">Intensity: <xliff:g id="intensity_str_value">%1$s</xliff:g></string>
 
     <string name="auto_brightness_reset_button">Reset</string>
+    <string name="settings_reset_button">Reset</string>
 
 	<!-- Volume settings - Volume adjustment sound -->
     <string name="volume_adjust_sounds_title">Volume adjustment sounds</string>

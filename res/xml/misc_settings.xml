@@ -38,6 +38,12 @@
 
     </PreferenceCategory>
 
+        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+            android:key="quick_settings_vibrate"
+            android:title="@string/quick_settings_vibrate_title"
+            android:summary="@string/quick_settings_vibrate_summary"
+            android:defaultValue="false"/>
+
         <!-- Screen Recorder -->
         <PreferenceScreen
            android:key="screen_recorder"

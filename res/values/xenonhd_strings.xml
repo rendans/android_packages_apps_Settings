@@ -307,4 +307,8 @@
 
     <!-- Doze (ambient display) preference category -->
     <string name="display_category_doze_options_title">Ambient display options</string>
+
+    <!-- QuickSettings haptic feedback -->
+    <string name="quick_settings_vibrate_title">Vibrate on touch</string>
+    <string name="quick_settings_vibrate_summary">Vibrate when touching tiles</string>
 </resources>

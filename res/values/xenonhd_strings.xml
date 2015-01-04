@@ -26,6 +26,9 @@
     <string name="reset_message">Reset all entries to default?</string>
     <string name="help">Help</string>
 
+    <!-- Miscellaneous settings -->
+    <string name="misc_settings_title">Miscellaneous</string>
+
     <!-- Sound settings -->
     <string name="advanced_sound_title">Advanced options</string>
     <string name="sound_title">Sound</string>

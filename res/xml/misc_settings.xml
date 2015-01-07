@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright (C) 2014 The CyanogenMod Project
+     Copyright (C) 2014 Team Horizon
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -38,17 +39,17 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:key="quick_settings_cat"
+        android:title="@string/quick_settings_title" >
+
         <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
             android:key="quick_settings_vibrate"
             android:title="@string/quick_settings_vibrate_title"
             android:summary="@string/quick_settings_vibrate_summary"
             android:defaultValue="false"/>
 
-        <!-- Screen Recorder -->
-        <PreferenceScreen
-           android:key="screen_recorder"
-           android:title="@string/screen_recorder_title"
-           android:fragment="com.android.settings.xenonhd.ScreenRecorderSettings" />
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:key="custom_animations"
@@ -67,6 +68,18 @@
            android:title="@string/aokp_animation_title"
            android:summary="@string/aokp_animation_summary"
            android:fragment="com.android.settings.xenonhd.fragments.AnimationControls" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="do_whatever_you_want_to_do_man"
+        android:title="@string/random_stuff" >
+
+        <!-- Screen Recorder -->
+        <PreferenceScreen
+           android:key="screen_recorder"
+           android:title="@string/screen_recorder_title"
+           android:fragment="com.android.settings.xenonhd.ScreenRecorderSettings" />
 
     </PreferenceCategory>
 

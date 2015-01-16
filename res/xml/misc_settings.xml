@@ -23,18 +23,22 @@
         android:key="notification_drawer"
         android:title="@string/notification_drawer_title" >
 
-    <!-- Notification drawer -->
         <PreferenceScreen
             android:id="@+id/notification_drawer_settings"
-            android:title="@string/category_navbar"
-            android:fragment="com.android.settings.cyanogenmod.NotificationDrawerSettings"
-            android:icon="@drawable/ic_settings_notification_drawer" />
+            android:title="@string/quick_settings"
+            android:fragment="com.android.settings.cyanogenmod.NotificationDrawerSettings" />
 
         <SwitchPreference
             android:key="force_expanded_notifications"
             android:title="@string/force_expanded_notifications_title"
             android:summary="@string/force_expanded_notifications_summary"
             android:persistent="false" />
+
+        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+            android:key="quick_settings_vibrate"
+            android:title="@string/quick_settings_vibrate_title"
+            android:summary="@string/quick_settings_vibrate_summary"
+            android:defaultValue="false"/>
 
     </PreferenceCategory>
 
@@ -62,18 +66,6 @@
             android:summary="@string/recents_clear_all_dismiss_all_summary"
             android:defaultValue="true"
             android:dependency="show_clear_all_recents" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:key="quick_settings_cat"
-        android:title="@string/quick_settings_title" >
-
-        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
-            android:key="quick_settings_vibrate"
-            android:title="@string/quick_settings_vibrate_title"
-            android:summary="@string/quick_settings_vibrate_summary"
-            android:defaultValue="false"/>
 
     </PreferenceCategory>
 

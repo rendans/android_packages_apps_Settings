@@ -701,6 +701,12 @@
     <!-- Performance menu, graphics options category -->
     <string name="graphics_title">Graphics and rendering</string>
 
+    <string name="display_rotation_title">Rotation</string>
+    <string name="display_rotation_disabled">Disabled</string>
+    <string name="display_rotation_unit">degrees</string>
+    <string name="display_lockscreen_rotation_title">Rotate lock screen</string>
+    <string name="display_rotation_category_title">Rotation modes</string>
+
     <!-- EdgeGesture service -->
     <string name="edge_gesture_service_title">Block gesture touch events</string>
     <string name="edge_gesture_service_summary">Don\'t send touch events for navigation and status bar gestures to apps</string>

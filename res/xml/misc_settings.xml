@@ -28,17 +28,22 @@
             android:title="@string/quick_settings"
             android:fragment="com.android.settings.cyanogenmod.NotificationDrawerSettings" />
 
-        <SwitchPreference
-            android:key="force_expanded_notifications"
-            android:title="@string/force_expanded_notifications_title"
-            android:summary="@string/force_expanded_notifications_summary"
-            android:persistent="false" />
+        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+            android:key="qs_show_brightness_slider"
+            android:title="@string/qs_brightness_slider_title"
+            android:defaultValue="true"/>
 
         <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
             android:key="quick_settings_vibrate"
             android:title="@string/quick_settings_vibrate_title"
             android:summary="@string/quick_settings_vibrate_summary"
             android:defaultValue="false"/>
+
+        <SwitchPreference
+            android:key="force_expanded_notifications"
+            android:title="@string/force_expanded_notifications_title"
+            android:summary="@string/force_expanded_notifications_summary"
+            android:persistent="false" />
 
     </PreferenceCategory>
 

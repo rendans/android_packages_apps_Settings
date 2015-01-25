@@ -121,7 +121,7 @@
         android:title="@string/random_stuff" >
 
         <!-- Heads up notifications -->
-        <Preference
+        <PreferenceScreen
                 android:key="heads_up_enabled"
                 android:fragment="com.android.settings.headsup.HeadsUpSettings"
                 android:title="@string/category_heads_up" />

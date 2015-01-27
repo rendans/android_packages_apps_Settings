@@ -493,4 +493,8 @@
     <!-- Disable QS setting -->
     <string name="secure_lockscreen_disable_qs">Disable QuickSettings access</string>
     <string name="secure_lockscreen_disable_qs_summary">Disable QuickSettings access on secure lockscreen.</string>
+
+    <!--Status bar data and wifi activity -->
+    <string name="show_activity_indicators_title">Activity indicators</string>
+    <string name="show_activity_indicators_summary">Show indicators in signal bars</string>
 </resources>

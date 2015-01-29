@@ -478,4 +478,7 @@
 
     <!-- SuperSU header name - the app hides itself from launcher based on this resource name being present in com.android.settings -->
     <string name="supersu_title">SuperSU</string>
+
+    <!-- BitSyko Layers  -->
+    <string name="bitsyko_layers_str">Layers</string>
 </resources>

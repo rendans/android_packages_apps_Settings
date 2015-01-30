@@ -249,7 +249,7 @@
 
     <!-- Weather in status bar -->
     <string name="status_bar_show_weather_title">Show weather</string>
-    <string name="status_bar_show_weather_summary">Show the weather in the status bar header</string>
+    <string name="status_bar_show_weather_summary">Show the weather above the Quick Settings panel</string>
 
     <string name="pa_login_username_hint">Username (email)</string>
     <string name="pa_login_password_hint">Password</string>

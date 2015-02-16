@@ -83,17 +83,9 @@
                 android:icon="@drawable/ic_settings_home"
                 />
 
-        <!-- Status bar -->
+        <!-- ROM Settings -->
         <dashboard-tile
-                android:id="@+id/status_bar_settings"
-                android:title="@string/status_bar_title"
-                android:fragment="com.android.settings.cyanogenmod.StatusBarSettings"
-                android:icon="@drawable/ic_settings_extdesk_hidenavbar"
-                />
-
-        <!-- Miscellaneous -->
-        <dashboard-tile
-                android:id="@+id/misc_settings"
+                android:id="@+id/rom_settings"
                 android:title="@string/misc_settings_title"
                 android:fragment="com.android.settings.xenonhd.MiscSettings"
                 android:icon="@drawable/ic_settings_interface"

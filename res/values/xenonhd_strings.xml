@@ -27,7 +27,7 @@
     <string name="help">Help</string>
 
     <!-- Miscellaneous settings -->
-    <string name="misc_settings_title">Miscellaneous</string>
+    <string name="misc_settings_title">ROM Settings</string>
 
     <!-- Sound settings -->
     <string name="advanced_sound_title">Advanced options</string>

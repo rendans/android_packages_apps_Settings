@@ -841,4 +841,7 @@
     <!-- Show/Hide Search Bar -->
     <string name="recents_show_searchbar">Show Search Bar in Recents</string>
     <string name="keywords_recents_show_searchbar">Enable or disable the Google search bar in the recents menu</string>
+
+    <string name="interruptions_ignore_while_media_title">Prevent audio ducking</string>
+    <string name="interruptions_ignore_while_media_summary">Do not reduce media playback volume when a notification arrives</string>
 </resources>

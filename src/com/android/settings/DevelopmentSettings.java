@@ -301,7 +301,7 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
         mAllPrefs.add(mClearAdbKeys);
 		mAdbNotify = findAndInitCheckboxPref(ADB_NOTIFY);
         mEnableTerminal = findAndInitCheckboxPref(ENABLE_TERMINAL);
-        if (!isPackageInstalled(getActivity(), TERMINAL_APP_PACKAGE)) {
+        if (!Utils.isPackageInstalled(getActivity(), TERMINAL_APP_PACKAGE)) {
             debugDebuggingCategory.removePreference(mEnableTerminal);
             mEnableTerminal = null;
         }

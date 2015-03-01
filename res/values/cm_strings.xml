@@ -745,6 +745,9 @@
     <string name="qs_advanced_location_title">Advanced location quick settings</string>
     <string name="qs_advanced_location_summary">Enable advanced settings for location in quick settings</string>
 
+    <!-- Gesture Settings -->
+    <!-- Settings main menu entry -->
+    <string name="gesture_settings_title">Gestures</string>
 
     <!-- WiFi Ad-Hoc mode -->
     <string name="wifi_mode">Mode</string>
@@ -754,6 +757,12 @@
     <string name="wifi_ibss_freq_title">Channel / Frequency</string>
     <string name="wifi_channel">Channel</string>
     <string name="wifi_mhz">MHz</string>
+
+    <!-- Voice Wakeup -->
+    <string name="voice_wakeup_settings_title">Voice wakeup</string>
+    <string name="voice_wakeup_retrain_title">Retrain your voice</string>
+    <string name="voice_wakeup_activity_title">Activity to launch</string>
+    <string name="voice_wakeup_default_activity">Google Now</string>
 
     <string name="picker_activities">Activities</string>
     <string name="select_custom_app_title">Select custom app</string>

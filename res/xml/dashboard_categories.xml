@@ -91,6 +91,17 @@
                 android:icon="@drawable/ic_settings_interface"
                 />
 
+        <!-- Gestures -->
+        <dashboard-tile
+            android:id="@+id/device_specific_gesture_settings"
+            android:title="@string/gesture_settings_title"
+            android:icon="@drawable/ic_settings_home">
+            <intent
+                android:action="com.cyanogenmod.action.LAUNCH_TOUCHSCREEN_GESTURE_SETTINGS"
+                android:targetPackage="com.cyanogenmod.settings.device"
+                android:targetClass="com.cyanogenmod.settings.device.TouchscreenGestureSettings" />
+        </dashboard-tile>
+
         <!-- BitSyko Layers App -->
         <dashboard-tile
                 android:id="@+id/bitsyko_layers"
@@ -186,6 +197,14 @@
     <dashboard-category
             android:id="@+id/personal_section"
             android:title="@string/header_category_personal" >
+
+        <!-- Voice wakeup -->
+        <dashboard-tile
+                android:id="@+id/voice_wakeup_settings"
+                android:fragment="com.android.settings.voicewakeup.VoiceWakeupSettings"
+                android:title="@string/voice_wakeup_settings_title"
+                android:icon="@drawable/ic_settings_voice_wakeup"
+                />
 
         <!-- Profiles -->
         <dashboard-tile

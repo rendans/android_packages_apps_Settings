@@ -1049,9 +1049,6 @@
     <string name="whisperpush_title">WhisperPush</string>
     <string name="whisperpush_summary">Manage secure SMS settings</string>
 
-    <string name="navigation_ring_title">Navigation ring targets</string>
-    <string name="navigation_ring_message">Tap the edit icon to open the navigation ring for editing.\n\nSelect a target to configure its behavior.\n\nTap the \'\u2713\' icon to save your changes, or \'Restore defaults\' to reset the settings to defaults.</string>
-
     <!-- Display & Lights screen, setting options for LCD density -->
     <string name="lcd_density">LCD density</string>
     <string name="dialog_title_lcd_density">LCD density</string>
@@ -1109,4 +1106,8 @@
     <string name="master_clear_desc_cm" product="default">This will erase all data from your phone\'s <b>internal storage</b>, including:\n\n<li>Your device accounts</li>\n<li>System and app data and settings</li>\n<li>Downloaded apps</li></string>
 
     <string name="bluetooth_pan_profile_summary_use_for_error">Connection error; is Bluetooth tethering enabled on this device?</string>
+
+    <string name="whisperpush_registration_title">Register</string>
+    <string name="whisperpush_registration_summary">Register for WhisperPush to enable encrypted SMS.</string>
+    <string name="whisperpush_identitykey_title">Review identity keys</string>
 </resources>

@@ -306,4 +306,7 @@
     <string name="daniel">Daniel Sikorski</string>
     <string name="daniel_gplus">+DanielSikorskidadi11</string>
 
+    <!-- BitSyko Layers -->
+    <string name="bitsyko_layers">Layers</string>
+
 </resources>

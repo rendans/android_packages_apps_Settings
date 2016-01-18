@@ -19,7 +19,28 @@
 
         <PreferenceScreen android:key="xenonhd_logo"
                           android:enabled="false"
-                          android:layout="@layout/xenonhd_logo_row" />		
+                          android:layout="@layout/xenonhd_logo_row" />
+
+        <!-- XenonOTA -->
+        <PreferenceScreen android:key="xenonota"
+                android:title="@string/xenonota_title"
+                android:summary="@string/xenonota_summary">
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="com.fusionjack.slimota"
+                    android:targetClass="com.fusionjack.slimota.MainActivity" />
+        </PreferenceScreen>
+
+        <!-- Changelog -->
+        <PreferenceScreen android:key="changelog"
+                android:title="@string/changelog_crdroid_title"
+                android:fragment="com.android.settings.crdroid.Changelog" />
+
+        <!-- About XenonHD -->
+        <PreferenceScreen
+                android:key="about"
+                android:fragment="com.android.settings.About"
+                android:title="@string/about_xenonhd"
+                android:summary="@string/about_xenonhd_summary" />
 
         <!-- Device status - launches activity -->
         <PreferenceScreen android:key="status_info"
